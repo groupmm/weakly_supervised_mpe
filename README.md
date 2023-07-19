@@ -35,6 +35,7 @@ conda activate multipitch_weaklysup
 python data_prep/01_extract_hcqt_pitch_schubert_winterreise.py
 python data_prep/02_extract_cqt_target_schubert_winterreise.py
 ```
+3. Extract ```data/Schubert_Winterreise/audio_audio_sync.zip``` in that same directory.
 
 After precomputation, your data directory should contain at least the following:
 ```
