@@ -1,0 +1,272 @@
+2023-03-22 14:02:29 | INFO : Logging experiment schubert_strongly_aligned_neither
+2023-03-22 14:02:29 | INFO : Experiment config: do training = True
+2023-03-22 14:02:29 | INFO : Experiment config: do validation = True
+2023-03-22 14:02:29 | INFO : Experiment config: do testing = True
+2023-03-22 14:02:29 | INFO : Training set parameters: {'context': 75, 'seglength': 500, 'stride': 200, 'compression': 10}
+2023-03-22 14:02:29 | INFO : Validation set parameters: {'context': 75, 'seglength': 500, 'stride': 500, 'compression': 10}
+2023-03-22 14:02:29 | INFO : Test set parameters: {'context': 75, 'seglength': 500, 'stride': 500, 'compression': 10}
+2023-03-22 14:02:29 | INFO : Training parameters: {'batch_size': 16, 'shuffle': True, 'num_workers': 16}
+2023-03-22 14:02:29 | INFO : Trained model saved in /home/ALABSAD/stst/multipitch_softdtw/models/schubert_strongly_aligned_neither.pt
+2023-03-22 14:02:29 | INFO :  --- Training config: ----------------------------------------- 
+2023-03-22 14:02:29 | INFO : Maximum number of epochs: 50
+2023-03-22 14:02:29 | INFO : Criterion (Loss): BCEWithLogitsLoss
+2023-03-22 14:02:29 | INFO : Label type: aligned
+2023-03-22 14:02:29 | INFO : Annotation data: /home/ALABSAD/stst/data/Schubert_Winterreise/pitch_hs512_nooverl
+2023-03-22 14:02:29 | INFO : Optimizer parameters: {'name': 'Adam', 'initial_lr': 0.001, 'betas': [0.9, 0.999]}
+2023-03-22 14:02:29 | INFO : Scheduler parameters: {'use_scheduler': True, 'name': 'ReduceLROnPlateau', 'mode': 'min', 'factor': 0.5, 'patience': 3, 'threshold': 0.0001, 'threshold_mode': 'rel', 'cooldown': 0, 'min_lr': 1e-06, 'eps': 1e-08, 'verbose': False}
+2023-03-22 14:02:29 | INFO : Early stopping parameters: {'use_early_stopping': True, 'mode': 'min', 'min_delta': 0.0001, 'patience': 12, 'percentage': False}
+2023-03-22 14:02:29 | INFO : Test parameters: {'batch_size': 16, 'shuffle': False, 'num_workers': 8}
+2023-03-22 14:02:29 | INFO : Save filewise results = True, in folder /home/ALABSAD/stst/multipitch_softdtw/experiments/results_filewise/schubert_strongly_aligned_neither.csv
+2023-03-22 14:02:29 | INFO : Save model predictions = True, in folder /home/ALABSAD/stst/multipitch_softdtw/predictions/schubert_strongly_aligned_neither
+2023-03-22 14:02:29 | INFO : CUDA use_cuda: True
+2023-03-22 14:02:29 | INFO : CUDA device: cuda:0
+2023-03-22 14:02:30 | INFO :  --- Model config: -------------------------------------------- 
+2023-03-22 14:02:30 | INFO : Model: basic_cnn_segm_logit
+2023-03-22 14:02:30 | INFO : Model parameters: {'n_chan_input': 6, 'n_chan_layers': [20, 20, 10, 1], 'n_bins_in': 216, 'n_bins_out': 72, 'a_lrelu': 0.3, 'p_dropout': 0.2}
+2023-03-22 14:02:32 | INFO : 
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+basic_cnn_segm_logit                     [1, 1, 100, 72]           --
+├─LayerNorm: 1-1                         [1, 174, 6, 216]          2,592
+├─Sequential: 1-2                        [1, 20, 174, 216]         --
+│    └─Conv2d: 2-1                       [1, 20, 174, 216]         27,020
+│    └─LeakyReLU: 2-2                    [1, 20, 174, 216]         --
+│    └─MaxPool2d: 2-3                    [1, 20, 174, 216]         --
+│    └─Dropout: 2-4                      [1, 20, 174, 216]         --
+├─Sequential: 1-3                        [1, 20, 174, 72]          --
+│    └─Conv2d: 2-5                       [1, 20, 174, 72]          3,620
+│    └─LeakyReLU: 2-6                    [1, 20, 174, 72]          --
+│    └─MaxPool2d: 2-7                    [1, 20, 174, 72]          --
+│    └─Dropout: 2-8                      [1, 20, 174, 72]          --
+├─Sequential: 1-4                        [1, 10, 100, 72]          --
+│    └─Conv2d: 2-9                       [1, 10, 100, 72]          15,010
+│    └─LeakyReLU: 2-10                   [1, 10, 100, 72]          --
+│    └─Dropout: 2-11                     [1, 10, 100, 72]          --
+├─Sequential: 1-5                        [1, 1, 100, 72]           --
+│    └─Conv2d: 2-12                      [1, 1, 100, 72]           11
+│    └─LeakyReLU: 2-13                   [1, 1, 100, 72]           --
+│    └─Dropout: 2-14                     [1, 1, 100, 72]           --
+│    └─Conv2d: 2-15                      [1, 1, 100, 72]           2
+==========================================================================================
+Total params: 48,255
+Trainable params: 48,255
+Non-trainable params: 0
+Total mult-adds (G): 1.17
+==========================================================================================
+Input size (MB): 0.90
+Forward/backward pass size (MB): 10.51
+Params size (MB): 0.19
+Estimated Total Size (MB): 11.61
+==========================================================================================
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-14_TR99.npy added to validation set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-02_QU98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-05_FI55.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-13_FI80.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-03_OL06.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-03_QU98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-09_FI80.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-12_AL98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-12_QU98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-02_FI55.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-10_AL98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-03_FI55.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-11_FI55.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-13_QU98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-11_OL06.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-09_OL06.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-06_QU98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-08_QU98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-01_OL06.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-05_QU98.npy added to training set.
+2023-03-22 14:02:32 | INFO :  - file Schubert_D911-06_FI55.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-07_QU98.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-05_OL06.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-06_OL06.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-13_AL98.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-15_FI66.npy added to validation set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-11_QU98.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-09_QU98.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-12_FI80.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-07_AL98.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-08_AL98.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-02_OL06.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-06_AL98.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-01_FI80.npy added to training set.
+2023-03-22 14:02:33 | INFO :  - file Schubert_D911-05_AL98.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-12_FI55.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-08_OL06.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-10_OL06.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-03_FI80.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-04_FI55.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-16_TR99.npy added to validation set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-10_QU98.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-14_FI66.npy added to validation set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-01_QU98.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-13_FI55.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-05_FI80.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-10_FI80.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-15_TR99.npy added to validation set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-16_FI66.npy added to validation set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-01_FI55.npy added to training set.
+2023-03-22 14:02:34 | INFO :  - file Schubert_D911-08_FI80.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-08_FI55.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-12_OL06.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-07_FI55.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-10_FI55.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-02_AL98.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-11_AL98.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-01_AL98.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-09_FI55.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-07_OL06.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-11_FI80.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-09_AL98.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-13_OL06.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-02_FI80.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-04_QU98.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-04_FI80.npy added to training set.
+2023-03-22 14:02:35 | INFO :  - file Schubert_D911-04_OL06.npy added to training set.
+2023-03-22 14:02:36 | INFO :  - file Schubert_D911-04_AL98.npy added to training set.
+2023-03-22 14:02:36 | INFO :  - file Schubert_D911-03_AL98.npy added to training set.
+2023-03-22 14:02:36 | INFO :  - file Schubert_D911-06_FI80.npy added to training set.
+2023-03-22 14:02:36 | INFO :  - file Schubert_D911-07_FI80.npy added to training set.
+2023-03-22 14:02:36 | INFO : Training set & loader generated, length 2652
+2023-03-22 14:02:36 | INFO : Validation set & loader generated, length 74
+2023-03-22 14:02:36 | INFO : 
+ 
+ ###################### START TRAINING ###################### 
+
+2023-03-22 14:02:38 | INFO : Loss for first batch was 0.3561933636665344 - going to scale loss with this from now on
+2023-03-22 14:02:57 | INFO : Epoch #0 finished. Train Loss: 0.4128, Val Loss: 0.2765 with lr: 0.00100
+2023-03-22 14:02:57 | INFO :   .... model of epoch 0 saved.
+2023-03-22 14:03:18 | INFO : Epoch #1 finished. Train Loss: 0.3569, Val Loss: 0.2879 with lr: 0.00100
+2023-03-22 14:03:38 | INFO : Epoch #2 finished. Train Loss: 0.3354, Val Loss: 0.2657 with lr: 0.00100
+2023-03-22 14:03:38 | INFO :   .... model of epoch #2 saved.
+2023-03-22 14:03:59 | INFO : Epoch #3 finished. Train Loss: 0.3189, Val Loss: 0.2520 with lr: 0.00100
+2023-03-22 14:03:59 | INFO :   .... model of epoch #3 saved.
+2023-03-22 14:04:21 | INFO : Epoch #4 finished. Train Loss: 0.3056, Val Loss: 0.2468 with lr: 0.00100
+2023-03-22 14:04:21 | INFO :   .... model of epoch #4 saved.
+2023-03-22 14:04:42 | INFO : Epoch #5 finished. Train Loss: 0.2963, Val Loss: 0.2252 with lr: 0.00100
+2023-03-22 14:04:42 | INFO :   .... model of epoch #5 saved.
+2023-03-22 14:05:03 | INFO : Epoch #6 finished. Train Loss: 0.2879, Val Loss: 0.2276 with lr: 0.00100
+2023-03-22 14:05:24 | INFO : Epoch #7 finished. Train Loss: 0.2820, Val Loss: 0.2208 with lr: 0.00100
+2023-03-22 14:05:24 | INFO :   .... model of epoch #7 saved.
+2023-03-22 14:05:45 | INFO : Epoch #8 finished. Train Loss: 0.2764, Val Loss: 0.2207 with lr: 0.00100
+2023-03-22 14:05:45 | INFO :   .... model of epoch #8 saved.
+2023-03-22 14:06:07 | INFO : Epoch #9 finished. Train Loss: 0.2724, Val Loss: 0.2157 with lr: 0.00100
+2023-03-22 14:06:07 | INFO :   .... model of epoch #9 saved.
+2023-03-22 14:06:29 | INFO : Epoch #10 finished. Train Loss: 0.2689, Val Loss: 0.2195 with lr: 0.00100
+2023-03-22 14:06:49 | INFO : Epoch #11 finished. Train Loss: 0.2661, Val Loss: 0.2209 with lr: 0.00100
+2023-03-22 14:07:09 | INFO : Epoch #12 finished. Train Loss: 0.2631, Val Loss: 0.2131 with lr: 0.00100
+2023-03-22 14:07:09 | INFO :   .... model of epoch #12 saved.
+2023-03-22 14:07:31 | INFO : Epoch #13 finished. Train Loss: 0.2604, Val Loss: 0.2147 with lr: 0.00100
+2023-03-22 14:07:51 | INFO : Epoch #14 finished. Train Loss: 0.2595, Val Loss: 0.2107 with lr: 0.00100
+2023-03-22 14:07:51 | INFO :   .... model of epoch #14 saved.
+2023-03-22 14:08:12 | INFO : Epoch #15 finished. Train Loss: 0.2576, Val Loss: 0.2150 with lr: 0.00100
+2023-03-22 14:08:33 | INFO : Epoch #16 finished. Train Loss: 0.2565, Val Loss: 0.2129 with lr: 0.00100
+2023-03-22 14:08:53 | INFO : Epoch #17 finished. Train Loss: 0.2554, Val Loss: 0.2097 with lr: 0.00100
+2023-03-22 14:08:53 | INFO :   .... model of epoch #17 saved.
+2023-03-22 14:09:15 | INFO : Epoch #18 finished. Train Loss: 0.2543, Val Loss: 0.2161 with lr: 0.00100
+2023-03-22 14:09:35 | INFO : Epoch #19 finished. Train Loss: 0.2539, Val Loss: 0.2139 with lr: 0.00100
+2023-03-22 14:09:55 | INFO : Epoch #20 finished. Train Loss: 0.2524, Val Loss: 0.2103 with lr: 0.00100
+2023-03-22 14:10:15 | INFO : Epoch #21 finished. Train Loss: 0.2516, Val Loss: 0.2109 with lr: 0.00100
+2023-03-22 14:10:36 | INFO : Epoch #22 finished. Train Loss: 0.2496, Val Loss: 0.2083 with lr: 0.00050
+2023-03-22 14:10:36 | INFO :   .... model of epoch #22 saved.
+2023-03-22 14:10:57 | INFO : Epoch #23 finished. Train Loss: 0.2492, Val Loss: 0.2131 with lr: 0.00050
+2023-03-22 14:11:18 | INFO : Epoch #24 finished. Train Loss: 0.2489, Val Loss: 0.2071 with lr: 0.00050
+2023-03-22 14:11:18 | INFO :   .... model of epoch #24 saved.
+2023-03-22 14:11:39 | INFO : Epoch #25 finished. Train Loss: 0.2486, Val Loss: 0.2097 with lr: 0.00050
+2023-03-22 14:11:59 | INFO : Epoch #26 finished. Train Loss: 0.2483, Val Loss: 0.2128 with lr: 0.00050
+2023-03-22 14:12:20 | INFO : Epoch #27 finished. Train Loss: 0.2481, Val Loss: 0.2078 with lr: 0.00050
+2023-03-22 14:12:40 | INFO : Epoch #28 finished. Train Loss: 0.2482, Val Loss: 0.2131 with lr: 0.00050
+2023-03-22 14:13:00 | INFO : Epoch #29 finished. Train Loss: 0.2465, Val Loss: 0.2073 with lr: 0.00025
+2023-03-22 14:13:21 | INFO : Epoch #30 finished. Train Loss: 0.2464, Val Loss: 0.2063 with lr: 0.00025
+2023-03-22 14:13:21 | INFO :   .... model of epoch #30 saved.
+2023-03-22 14:13:42 | INFO : Epoch #31 finished. Train Loss: 0.2461, Val Loss: 0.2109 with lr: 0.00025
+2023-03-22 14:14:02 | INFO : Epoch #32 finished. Train Loss: 0.2461, Val Loss: 0.2094 with lr: 0.00025
+2023-03-22 14:14:23 | INFO : Epoch #33 finished. Train Loss: 0.2460, Val Loss: 0.2101 with lr: 0.00025
+2023-03-22 14:14:43 | INFO : Epoch #34 finished. Train Loss: 0.2458, Val Loss: 0.2108 with lr: 0.00025
+2023-03-22 14:15:03 | INFO : Epoch #35 finished. Train Loss: 0.2448, Val Loss: 0.2090 with lr: 0.00013
+2023-03-22 14:15:24 | INFO : Epoch #36 finished. Train Loss: 0.2448, Val Loss: 0.2076 with lr: 0.00013
+2023-03-22 14:15:44 | INFO : Epoch #37 finished. Train Loss: 0.2447, Val Loss: 0.2129 with lr: 0.00013
+2023-03-22 14:16:05 | INFO : Epoch #38 finished. Train Loss: 0.2447, Val Loss: 0.2101 with lr: 0.00013
+2023-03-22 14:16:25 | INFO : Epoch #39 finished. Train Loss: 0.2442, Val Loss: 0.2110 with lr: 0.00006
+2023-03-22 14:16:45 | INFO : Epoch #40 finished. Train Loss: 0.2443, Val Loss: 0.2095 with lr: 0.00006
+2023-03-22 14:17:06 | INFO : Epoch #41 finished. Train Loss: 0.2441, Val Loss: 0.2081 with lr: 0.00006
+2023-03-22 14:17:26 | INFO : Epoch #42 finished. Train Loss: 0.2440, Val Loss: 0.2110 with lr: 0.00006
+2023-03-22 14:17:26 | INFO :  ### trained model saved in /home/ALABSAD/stst/multipitch_softdtw/models/schubert_strongly_aligned_neither.pt 
+
+2023-03-22 14:17:26 | INFO : 
+ 
+ ###################### START TESTING ###################### 
+
+2023-03-22 14:17:41 | INFO : file Schubert_D911-17_HU33.npy tested. Cosine sim: 0.7016118918016766
+2023-03-22 14:17:58 | INFO : file Schubert_D911-23_SC06.npy tested. Cosine sim: 0.7715526516824452
+2023-03-22 14:18:20 | INFO : file Schubert_D911-20_HU33.npy tested. Cosine sim: 0.7855075143550108
+2023-03-22 14:18:29 | INFO : file Schubert_D911-23_HU33.npy tested. Cosine sim: 0.7559050557736279
+2023-03-22 14:18:33 | INFO : file Schubert_D911-21_HU33.npy tested. Cosine sim: 0.8249223060565293
+2023-03-22 14:18:37 | INFO : file Schubert_D911-17_SC06.npy tested. Cosine sim: 0.6787318482513984
+2023-03-22 14:18:46 | INFO : file Schubert_D911-22_SC06.npy tested. Cosine sim: 0.7685245989408241
+2023-03-22 14:18:49 | INFO : file Schubert_D911-24_HU33.npy tested. Cosine sim: 0.7636186224800579
+2023-03-22 14:18:53 | INFO : file Schubert_D911-24_SC06.npy tested. Cosine sim: 0.7525656601596062
+2023-03-22 14:19:06 | INFO : file Schubert_D911-21_SC06.npy tested. Cosine sim: 0.8277154230757748
+2023-03-22 14:19:12 | INFO : file Schubert_D911-18_HU33.npy tested. Cosine sim: 0.7317375330753727
+2023-03-22 14:19:14 | INFO : file Schubert_D911-20_SC06.npy tested. Cosine sim: 0.8071368100599998
+2023-03-22 14:19:18 | INFO : file Schubert_D911-19_HU33.npy tested. Cosine sim: 0.6038265263479089
+2023-03-22 14:19:19 | INFO : file Schubert_D911-19_SC06.npy tested. Cosine sim: 0.7442536497372566
+2023-03-22 14:19:35 | INFO : file Schubert_D911-22_HU33.npy tested. Cosine sim: 0.74484082175973
+2023-03-22 14:19:37 | INFO : file Schubert_D911-18_SC06.npy tested. Cosine sim: 0.7119764220095174
+2023-03-22 14:19:39 | INFO : ### Testing done. Results: ######################################## 
+
+2023-03-22 14:19:39 | INFO : Mean precision:   0.689856328959681
+2023-03-22 14:19:39 | INFO : Mean recall:   0.7191174233579196
+2023-03-22 14:19:39 | INFO : Mean f_measure:   0.7003719668679061
+2023-03-22 14:19:39 | INFO : Mean cosine_sim:   0.7484017084729211
+2023-03-22 14:19:39 | INFO : Mean binary_crossentropy:   0.11269408265703983
+2023-03-22 14:19:39 | INFO : Mean euclidean_distance:   1.207354547157662
+2023-03-22 14:19:39 | INFO : Mean binary_accuracy:   0.9683412274842844
+2023-03-22 14:19:39 | INFO : Mean soft_accuracy:   0.9523940100678324
+2023-03-22 14:19:39 | INFO : Mean accum_energy:   0.5761387490865671
+2023-03-22 14:19:39 | INFO : Mean roc_auc_measure:   0.9763077916029457
+2023-03-22 14:19:39 | INFO : Mean average_precision_score:   0.752838502329743
+2023-03-22 14:19:39 | INFO : Mean Precision:   0.689856328959681
+2023-03-22 14:19:39 | INFO : Mean Recall:   0.7191174233579196
+2023-03-22 14:19:39 | INFO : Mean Accuracy:   0.5429600588934336
+2023-03-22 14:19:39 | INFO : Mean Substitution Error:   0.13704071057841716
+2023-03-22 14:19:39 | INFO : Mean Miss Error:   0.14384186606366334
+2023-03-22 14:19:39 | INFO : Mean False Alarm Error:   0.19375446416076803
+2023-03-22 14:19:39 | INFO : Mean Total Error:   0.4746370408028485
+2023-03-22 14:19:39 | INFO : Mean Chroma Precision:   0.7336140216521359
+2023-03-22 14:19:39 | INFO : Mean Chroma Recall:   0.7639864479340632
+2023-03-22 14:19:39 | INFO : Mean Chroma Accuracy:   0.5954502476959617
+2023-03-22 14:19:39 | INFO : Mean Chroma Substitution Error:   0.09217168600227332
+2023-03-22 14:19:39 | INFO : Mean Chroma Miss Error:   0.14384186606366334
+2023-03-22 14:19:39 | INFO : Mean Chroma False Alarm Error:   0.19375446416076803
+2023-03-22 14:19:39 | INFO : Mean Chroma Total Error:   0.4297680162267047
+2023-03-22 14:19:39 | INFO : 
+
+2023-03-22 14:19:39 | INFO : Framewise precision:   0.6943524071487621
+2023-03-22 14:19:39 | INFO : Framewise recall:   0.7536405981806987
+2023-03-22 14:19:39 | INFO : Framewise f_measure:   0.7199136931768451
+2023-03-22 14:19:39 | INFO : Framewise cosine_sim:   0.761968928364348
+2023-03-22 14:19:39 | INFO : Framewise binary_crossentropy:   0.1061495734694273
+2023-03-22 14:19:39 | INFO : Framewise euclidean_distance:   1.179439109044331
+2023-03-22 14:19:39 | INFO : Framewise binary_accuracy:   0.969700801463678
+2023-03-22 14:19:39 | INFO : Framewise soft_accuracy:   0.9542167636586906
+2023-03-22 14:19:39 | INFO : Framewise accum_energy:   0.6066585265338059
+2023-03-22 14:19:39 | INFO : Framewise roc_auc_measure:   0.9802830714794175
+2023-03-22 14:19:39 | INFO : Framewise average_precision_score:   0.7720044084182427
+2023-03-22 14:19:39 | INFO : Framewise Precision:   0.6943524071487621
+2023-03-22 14:19:39 | INFO : Framewise Recall:   0.7536405981806987
+2023-03-22 14:19:39 | INFO : Framewise Accuracy:   0.5657356964720953
+2023-03-22 14:19:39 | INFO : Framewise Substitution Error:   0.12482171961133359
+2023-03-22 14:19:39 | INFO : Framewise Miss Error:   0.12153768220796762
+2023-03-22 14:19:39 | INFO : Framewise False Alarm Error:   0.21480707919679728
+2023-03-22 14:19:39 | INFO : Framewise Total Error:   0.4611664810160985
+2023-03-22 14:19:39 | INFO : Framewise Chroma Precision:   0.731744912350436
+2023-03-22 14:19:39 | INFO : Framewise Chroma Recall:   0.7941201997169368
+2023-03-22 14:19:39 | INFO : Framewise Chroma Accuracy:   0.613408625740313
+2023-03-22 14:19:39 | INFO : Framewise Chroma Substitution Error:   0.0843421180750953
+2023-03-22 14:19:39 | INFO : Framewise Chroma Miss Error:   0.12153768220796762
+2023-03-22 14:19:39 | INFO : Framewise Chroma False Alarm Error:   0.21480707919679728
+2023-03-22 14:19:39 | INFO : Framewise Chroma Total Error:   0.42068687947986017

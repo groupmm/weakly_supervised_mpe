@@ -1,0 +1,7 @@
+.idea
+__pycache__
+.ipynb_checkpoints
+experiments/predictions/*
+data/Schubert_Winterreise/cqt_hs512
+data/Schubert_Winterreise/hcqt_hs512_o6_h5_s1
+data/Schubert_Winterreise/pitch_hs512_nooverl
